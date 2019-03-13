@@ -11,6 +11,10 @@ module.exports = {
       return;
     }
 
+    if (!form.mjml) {
+      sendError(true, res, 'ERROR: Must select a template!');
+      return;
+    }
     const html = transpiler.transpile(form.mjml);
 
     const variablesToInject = {
