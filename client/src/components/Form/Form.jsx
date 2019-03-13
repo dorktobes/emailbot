@@ -114,7 +114,14 @@ class Form extends React.Component {
         redirect: 'follow',
         referrer: 'no-referrer',
         body: JSON.stringify(data),
-      }).then(response => response.json());
+      }).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return response.json().then((err) => {
+          throw new Error(err.message);
+        });
+      });
     }
 
     const protocol = 'http';
@@ -130,7 +137,7 @@ class Form extends React.Component {
     postData(url, emailData)
       .then(response => this.setState({ previewHTML: response.html, isPreviewDisplayed: true }))
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
