@@ -17,7 +17,7 @@ const injectVariablesIntoTemplate = (html, variables) => {
 
 const sendError = (status, res, message) => {
   res.status(status);
-  res.send(new Error(message));
+  res.send({ message });
 };
 
 module.exports = {
