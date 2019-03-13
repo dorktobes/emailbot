@@ -20,7 +20,7 @@ module.exports = {
     const emailSender = new EmailSender(transporter);
 
     if (!recipients || !currentUser.email) {
-      sendError(true, res, 'ERROR: Invalid sender or recipient(s)!');
+      sendError(400, res, 'ERROR: Invalid sender or recipient(s)!');
       return;
     }
 
