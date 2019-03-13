@@ -7,12 +7,12 @@ module.exports = {
     const transpiler = new MJMLTranspiler();
 
     if (!recipients || !currentUser.email) {
-      sendError(true, res, 'ERROR: Invalid sender or recipient(s)!');
+      sendError(400, res, 'ERROR: Invalid sender or recipient(s)!');
       return;
     }
 
     if (!form.mjml) {
-      sendError(true, res, 'ERROR: Must select a template!');
+      sendError(400, res, 'ERROR: Must select a template!');
       return;
     }
     const html = transpiler.transpile(form.mjml);
